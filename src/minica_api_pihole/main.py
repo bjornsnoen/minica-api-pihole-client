@@ -4,7 +4,7 @@ from os import sync
 from pathlib import Path
 from shutil import move, which
 from subprocess import run
-from typing import Any
+from typing import Any, List
 
 import click
 from dataclasses_json import dataclass_json
@@ -21,7 +21,7 @@ class DomainMessage:
 dns_records_file = Path("/etc/pihole/custom.list")
 
 
-def read_old_dns() -> list[DomainMessage]:
+def read_old_dns() -> List[DomainMessage]:
     records = list(
         filter(
             lambda line: line != "",
@@ -34,7 +34,7 @@ def read_old_dns() -> list[DomainMessage]:
     ]
 
 
-def write_new_dns(old_records: list[DomainMessage], new_record: DomainMessage):
+def write_new_dns(old_records: List[DomainMessage], new_record: DomainMessage):
     new_list_file = Path("/tmp/custom.list.new")
     new_records = [*old_records, new_record]
     with new_list_file.open(mode="w", encoding="utf-8") as file:

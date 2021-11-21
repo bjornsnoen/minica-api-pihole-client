@@ -1,15 +1,19 @@
 [tool.poetry]
 name = "minica-api-pihole-client"
-version = "0.1.0"
+version = "0.2.0"
 description = "Inject minica-api domain messages into pihole dns"
 authors = ["Bjørn Snoen <bjorn.snoen@gmail.com>"]
 license = "GPLv3"
 packages = [
     { include="minica_api_pihole", from="src" },
 ]
+readme = "README.md"
+repository = "https://github.com/bjornsnoen/minica-api-pihole-client"
+homepage = "https://github.com/bjornsnoen/minica-api-pihole-client"
+keywords = ["minica", "pihole", "traefik"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.7"
 paho-mqtt = "^1.6.1"
 click = "^8.0.3"
 dataclasses-json = "^0.5.6"
