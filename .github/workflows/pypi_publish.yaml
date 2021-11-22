@@ -1,0 +1,30 @@
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  publish:
+    name: Publish to pypi
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Add python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.7"
+
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Build dist
+        run: poetry build
+
+      - name: Publish
+        run: poetry publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}
